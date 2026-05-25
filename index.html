@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solar Parties</title>
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --dark-bg: #0a0a0a;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            min-height: 100%;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--dark-bg);
+            color: #ffffff;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Золотое свечение на фоне */
+        .glow-background {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150vw;
+            height: 150vh;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(10, 10, 10, 0) 60%);
+            z-index: -1;
+            pointer-events: none;
+            animation: pulseGlow 6s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulseGlow {
+            0% { opacity: 0.7; transform: translate(-50%, -50%) scale(0.95); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
+        }
+
+        /* Основной контейнер */
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 2rem 1rem;
+            box-sizing: border-box;
+            min-height: 100vh;
+        }
+
+        /* Логотип */
+        header {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .logo {
+            max-width: 350px;
+            width: 90%;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+            transition: filter 0.3s ease;
+        }
+
+        .logo:hover {
+            filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.7));
+        }
+
+        /* Блок с кнопками */
+        .buttons-wrapper {
+            margin-top: auto; /* Прижимает кнопки к низу, но над футером */
+            margin-bottom: 3rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            max-width: 800px;
+        }
+
+        /* Стили кнопок */
+        .solar-btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: rgba(20, 20, 20, 0.6);
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+            /* Плавный переход для скрипта анимации движения и ховера */
+            transition: transform 1.5s ease-in-out, background 0.3s, color 0.3s, box-shadow 0.3s;
+        }
+
+        .solar-btn:hover {
+            background: var(--gold);
+            color: var(--dark-bg);
+            box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
+            /* При наведении кнопка перестаёт "убегать" */
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.1s;
+            transform: translate(0, 0) scale(1.05) !important;
+            z-index: 10;
+        }
+
+        /* Подвал сайта */
+        footer {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 0.9rem;
+            color: #888;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            width: 100%;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .credit-link {
+            color: var(--gold-light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .credit-link:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        /* Адаптивность для телефонов */
+        @media (max-width: 600px) {
+            .buttons-wrapper {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .solar-btn {
+                width: 80%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-background"></div>
+
+    <div class="container">
+        <header>
+            <img src="https://file.garden/aUk_YK3Gbmwc6_an/SOLAR.png" alt="Solar Parties Logo" class="logo">
+        </header>
+
+        <div class="buttons-wrapper">
+            <a href="https://gnusinrat.github.io/404" class="solar-btn">пример :)</a>
+            <a href="https://gnusinrat.github.io/404" class="solar-btn">пример :)</a>
+            <a href="https://gnusinrat.github.io/404" class="solar-btn">пример :)</a>
+            <a href="https://gnusinrat.github.io/404" class="solar-btn">пример :)</a>
+            <a href="https://gnusinrat.github.io/404" class="solar-btn">пример :)</a>
+        </div>
+
+        <footer>
+            Сайт создан и управляется <a href="https://gnusinrat.github.io/index_ru" class="credit-link">Гнусиным Ратибором</a>.
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const buttons = document.querySelectorAll('.solar-btn');
+            
+            // Функция для случайного смещения кнопок
+            function moveButtons() {
+                buttons.forEach(btn => {
+                    // Если на кнопку наведена мышь, не двигаем её
+                    if (btn.matches(':hover')) return;
+
+                    // Генерируем случайное значение от -12px до 12px
+                    const randomX = (Math.random() - 0.5) * 24;
+                    const randomY = (Math.random() - 0.5) * 24;
+                    
+                    btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
+                });
+            }
+
+            // Запускаем смещение каждые 1.5 секунды
+            setInterval(moveButtons, 1500);
+            
+            // Разовое срабатывание при загрузке с небольшой задержкой
+            setTimeout(moveButtons, 100);
+        });
+    </script>
+</body>
+</html>
