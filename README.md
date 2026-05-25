@@ -1,2 +1,2 @@
 # SolarSite
-Сайт для Solar.
+Сайт для вечеринок Solar.
