@@ -23,7 +23,6 @@
             flex-direction: column;
         }
 
-        /* Золотое свечение на фоне */
         .glow-background {
             position: fixed;
             top: 50%;
@@ -42,7 +41,6 @@
             100% { opacity: 1; transform: translate(-50%, -50%) scale(1.05); }
         }
 
-        /* Основной контейнер */
         .container {
             flex: 1;
             display: flex;
@@ -54,7 +52,6 @@
             min-height: 100vh;
         }
 
-        /* Логотип */
         header {
             margin-top: 2rem;
             text-align: center;
@@ -72,20 +69,22 @@
             filter: drop-shadow(0 0 35px rgba(212, 175, 55, 0.7));
         }
 
-        /* Блок с кнопками */
         .buttons-wrapper {
-            margin-top: auto; /* Прижимает кнопки к низу, но над футером */
+            margin-top: auto;
             margin-bottom: 3rem;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column; /* Кнопки красиво встанут в столбик */
             gap: 20px;
-            justify-content: center;
-            max-width: 800px;
+            align-items: center;
+            width: 100%;
+            max-width: 450px;
         }
 
-        /* Стили кнопок */
         .solar-btn {
             display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            text-align: center;
             padding: 15px 30px;
             background: rgba(20, 20, 20, 0.6);
             border: 1px solid var(--gold);
@@ -109,7 +108,18 @@
             z-index: 10;
         }
 
-        /* Подвал сайта */
+        .solar-btn.highlight {
+            background: var(--gold);
+            color: var(--dark-bg);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .solar-btn.highlight:hover {
+            background: var(--gold-light);
+            color: var(--dark-bg);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
+        }
+
         footer {
             text-align: center;
             padding: 1.5rem;
@@ -131,16 +141,9 @@
             text-decoration: underline;
         }
 
-        /* Адаптивность для телефонов */
         @media (max-width: 600px) {
-            .buttons-wrapper {
-                flex-direction: column;
-                align-items: center;
-                gap: 15px;
-            }
             .solar-btn {
-                width: 80%;
-                text-align: center;
+                width: 90%;
             }
         }
     </style>
@@ -155,7 +158,8 @@
         </header>
 
         <div class="buttons-wrapper">
-            <a href="https://zagorodnyy-kompleks-abala.timepad.ru/event/3803974/" class="solar-btn" target="_blank">Odyssey Легенды Абалака: кемп</a>
+            <!-- Первая кнопка выделена классом highlight -->
+            <a href="https://zagorodnyy-kompleks-abala.timepad.ru/event/3803974/" class="solar-btn highlight" target="_blank">Odyssey Легенды Абалака: кемп</a>
             <a href="https://t.me/solar_tmn" class="solar-btn" target="_blank">Мы в Telegram</a>
             <a href="https://vk.com/solar_72" class="solar-btn" target="_blank">Мы в ВКонтакте</a>
             <a href="https://max.ru/join/opE34bUBeAzx2E0bDPvXEKcazUgL30shhSVFwKYQ1XY" class="solar-btn" target="_blank">Мы в Макс</a>
