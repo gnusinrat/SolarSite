@@ -98,17 +98,14 @@
             border-radius: 50px;
             backdrop-filter: blur(4px);
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
-            /* Плавный переход для скрипта анимации движения и ховера */
-            transition: transform 1.5s ease-in-out, background 0.3s, color 0.3s, box-shadow 0.3s;
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
         }
 
         .solar-btn:hover {
             background: var(--gold);
             color: var(--dark-bg);
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
-            /* При наведении кнопка перестаёт "убегать" */
-            transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.1s;
-            transform: translate(0, 0) scale(1.05) !important;
+            transform: scale(1.05);
             z-index: 10;
         }
 
@@ -158,42 +155,15 @@
         </header>
 
         <div class="buttons-wrapper">
-            <a href="https://gnusinrat.github.io/404" class="solar-btn">пример :)</a>
-            <a href="https://gnusinrat.github.io/404" class="solar-btn">пример :)</a>
-            <a href="https://gnusinrat.github.io/404" class="solar-btn">пример :)</a>
-            <a href="https://gnusinrat.github.io/404" class="solar-btn">пример :)</a>
-            <a href="https://gnusinrat.github.io/404" class="solar-btn">пример :)</a>
+            <a href="https://zagorodnyy-kompleks-abala.timepad.ru/event/3803974/" class="solar-btn" target="_blank">Odyssey Легенды Абалака: кемп</a>
+            <a href="https://t.me/solar_tmn" class="solar-btn" target="_blank">Мы в Telegram</a>
+            <a href="https://vk.com/solar_72" class="solar-btn" target="_blank">Мы в ВКонтакте</a>
+            <a href="https://max.ru/join/opE34bUBeAzx2E0bDPvXEKcazUgL30shhSVFwKYQ1XY" class="solar-btn" target="_blank">Мы в Макс</a>
         </div>
 
         <footer>
             Сайт создан и управляется <a href="https://gnusinrat.github.io/index_ru" class="credit-link">Гнусиным Ратибором</a>.
         </footer>
     </div>
-
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const buttons = document.querySelectorAll('.solar-btn');
-            
-            // Функция для случайного смещения кнопок
-            function moveButtons() {
-                buttons.forEach(btn => {
-                    // Если на кнопку наведена мышь, не двигаем её
-                    if (btn.matches(':hover')) return;
-
-                    // Генерируем случайное значение от -12px до 12px
-                    const randomX = (Math.random() - 0.5) * 24;
-                    const randomY = (Math.random() - 0.5) * 24;
-                    
-                    btn.style.transform = `translate(${randomX}px, ${randomY}px)`;
-                });
-            }
-
-            // Запускаем смещение каждые 1.5 секунды
-            setInterval(moveButtons, 1500);
-            
-            // Разовое срабатывание при загрузке с небольшой задержкой
-            setTimeout(moveButtons, 100);
-        });
-    </script>
 </body>
 </html>
