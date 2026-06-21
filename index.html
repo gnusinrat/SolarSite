@@ -132,6 +132,7 @@
             backdrop-filter: blur(4px);
             box-shadow: 0 0 15px rgba(16, 156, 1, 0.1);
             transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+            cursor: pointer;
         }
 
         /* эффекты при наведении */
@@ -197,6 +198,105 @@
             transform: scale(1.1);
         }
 
+        /* --- Стили для модального окна (поп-апа) --- */
+        .modal-overlay {
+            display: none; /* Скрыто по умолчанию */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: var(--dark-bg);
+            border: 1px solid var(--gold);
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .modal-title {
+            color: #ffb433; /* не аггресируй */
+            font-size: 1.8rem;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .modal-text {
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin-bottom: 2rem;
+            color: #ddd;
+        }
+
+        .modal-text strong {
+            color: var(--gold);
+        }
+
+        .modal-buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-btn {
+            padding: 15px;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .modal-btn-confirm {
+            background: rgba(0, 255, 21, 0.6);
+            border: 1px solid rgba(0, 255, 21, 0.8);
+            color: #fff;
+        }
+
+        .modal-btn-confirm:hover {
+            background: rgba(0, 133, 11, 0.8);
+            box-shadow: 0 0 15px rgba(0, 255, 21, 0.4);
+            transform: scale(1.02);
+        }
+
+        .modal-btn-cancel {
+            background: transparent;
+            border: 1px solid #555;
+            color: #aaa;
+        }
+
+        .modal-btn-cancel:hover {
+            border-color: #fff;
+            color: #fff;
+        }
+
         footer {
             text-align: center;
             padding: 1.5rem;
@@ -246,6 +346,18 @@
         </svg>
     </a>
 
+    <!-- Модальное окно (Поп-ап) -->
+    <div id="ticketModal" class="modal-overlay">
+        <div class="modal-content">
+            <h2 class="modal-title">ЧЕК = БИЛЕТ!</h2>
+            <p class="modal-text">При покупке билетов, <strong>ОБЯЗАТЕЛЬНО</strong> сохраняйте чек от Робокассы!<br></p>
+            <div class="modal-buttons-container">
+                <button id="modalConfirmBtn" class="modal-btn modal-btn-confirm">Перейти к покупке</button>
+                <button id="modalCancelBtn" class="modal-btn modal-btn-cancel">Отмена</button>
+            </div>
+        </div>
+    </div>
+
     <div class="glow-background"></div>
 
     <div class="container">
@@ -255,7 +367,7 @@
 
         <div class="buttons-wrapper">
             <!-- кнопы -->
-            <a href="https://auth.robokassa.ru/merchant/Invoice/b_pXFrNooUS6O4FMHECRuw" class="solar-btn-green" target="_blank">БИЛЕТЫ: TABIA в Bullwar lounge</a>
+            <a href="#" class="solar-btn-green" id="tabiaTicketBtn" data-url="https://auth.robokassa.ru/merchant/Invoice/b_pXFrNooUS6O4FMHECRuw">БИЛЕТЫ: TABIA в Bullwar lounge</a>
             <a href="https://odysseyabalak.ru" class="solar-btn highlight" target="_blank">Odyssey Легенды Абалака: кэмп</a>
             <a href="https://t.me/solar_tmn" class="solar-btn" target="_blank">Мы в Telegram</a>
             <a href="https://vk.com/solar_72" class="solar-btn" target="_blank">Мы в ВКонтакте</a>
@@ -267,5 +379,42 @@
             Сайт создан <a href="https://gnusinrat.github.io" class="credit-link">ratbar1999</a> и командой Solar.
         </footer>
     </div>
+
+    <!-- скрипт для работы поп-апа -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const ticketBtn = document.getElementById('tabiaTicketBtn');
+            const modal = document.getElementById('ticketModal');
+            const confirmBtn = document.getElementById('modalConfirmBtn');
+            const cancelBtn = document.getElementById('modalCancelBtn');
+            
+            // ссылка на оплату берется из дата-атрибута
+            const paymentUrl = ticketBtn.getAttribute('data-url');
+
+            // при клике на кнопку билетов - показываем модалку
+            ticketBtn.addEventListener('click', (e) => {
+                e.preventDefault(); // Останавливаем обычный переход по ссылке (теперь href="#")
+                modal.classList.add('active');
+            });
+
+            // при клике на "Я понял" - убираем модалку и открываем ссылку
+            confirmBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+                window.open(paymentUrl, '_blank');
+            });
+
+            // при клике на "Отмена" - просто закрываем модалку
+            cancelBtn.addEventListener('click', () => {
+                modal.classList.remove('active');
+            });
+
+            // закрываем модалку, если кликнуть по темному фону вокруг неё
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
