@@ -1,15 +1,19 @@
+<!-- привет всем коллабораторам! 
+ в недавнем коммите я добавил сюда прикольные коммы типа этого. они дают вам подсказки что тут что делает
+ если нужно большое изменение то говорите мне, я сам сделаю. -->
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Solar Parties</title>
+    <title>Solar Parties</title> <!-- название вкладки в браузере -->
     <style>
-    /* Цвета */
-
+    /* цвета */
         :root {
-            --gold: #d4af37;
-            --gold-light: #f3e5ab;
+            --gold: #d4af37; /* золотой цвет. вместо ргб циферок можно использовать сокращённые, тут например --gold
+            свои также можете делать */
+            --gold-light: #f3e5ab; /* светлое золото */
             --dark-bg: #0a0a0a;
         }
 
@@ -25,6 +29,9 @@
             flex-direction: column;
         }
 
+        /* тут должна быть анимация фона но она не работает */
+        /* зато логотип пульсирует при наведении, но я не думаю что это зависит от этой функции */
+        /* PS. не зависит. нашёл отдельную функцию для пульса лого */
         .glow-background {
             position: fixed;
             top: 50%;
@@ -59,6 +66,7 @@
             text-align: center;
         }
 
+        /* вот та функция для лого */
         .logo {
             max-width: 350px;
             width: 90%;
@@ -75,13 +83,14 @@
             margin-top: auto;
             margin-bottom: 3rem;
             display: flex;
-            flex-direction: column; /* Кнопки красиво встанут в столбик */
+            flex-direction: column; /* кнопки будут в столбик */
             gap: 20px;
             align-items: center;
             width: 100%;
             max-width: 450px;
         }
 
+        /* обычная кнопка для соцсетей */
         .solar-btn {
             display: inline-block;
             width: 100%;
@@ -102,13 +111,15 @@
             transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
         }
 
+        /* кнопка табия */
         .solar-btn-green {
             display: inline-block;
             width: 100%;
             box-sizing: border-box;
             text-align: center;
             padding: 15px 30px;
-            background: rgba(0, 255, 21, 0.6);
+            background: rgba(0, 255, 21, 0.6); /* <-- цвета типо таких можно менять без использования ргб 
+            если кликнуть на цветной квадрат */
             border: 1px solid rgba(0, 255, 21, 0.8);
             color: var(--bleak);
             text-decoration: none;
@@ -122,6 +133,7 @@
             transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
         }
 
+        /* эффекты при наведении */
         .solar-btn-green:hover {
             background: rgba(0, 133, 11, 0.8);
             color: rgba(255, 255, 255, 0.9);
@@ -138,6 +150,7 @@
             z-index: 10;
         }
 
+        /* золотая кнопка */
         .solar-btn.highlight {
             background: var(--gold);
             color: var(--dark-bg);
@@ -150,7 +163,7 @@
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
         }
 
-        /* Кнопка Spotlight в правом верхнем углу */
+        /* кнопка spotlight в углу */
         .spotlight-btn {
             position: absolute;
             top: 20px;
@@ -175,6 +188,7 @@
             height: 22px;
         }
 
+        /* ховер */
         .spotlight-btn:hover {
             background: var(--gold);
             color: var(--dark-bg);
@@ -222,7 +236,7 @@
 </head>
 <body>
 
-    <!-- Кнопка Spotlight -->
+    <!-- кнопка spotlight -->
     <a href="https://gnusinrat.github.io/spotlight" class="spotlight-btn" title="Лента Spotlight (VSKY)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
@@ -239,7 +253,7 @@
         </header>
 
         <div class="buttons-wrapper">
-            <!-- Первая кнопка выделена классом highlight -->
+            <!-- кнопы -->
             <a href="https://auth.robokassa.ru/merchant/Invoice/b_pXFrNooUS6O4FMHECRuw" class="solar-btn-green" target="_blank">БИЛЕТЫ: TABIA в Bullwar lounge</a>
             <a href="https://odysseyabalak.ru" class="solar-btn highlight" target="_blank">Odyssey Легенды Абалака: кэмп</a>
             <a href="https://t.me/solar_tmn" class="solar-btn" target="_blank">Мы в Telegram</a>
@@ -247,6 +261,7 @@
             <a href="https://max.ru/join/opE34bUBeAzx2E0bDPvXEKcazUgL30shhSVFwKYQ1XY" class="solar-btn" target="_blank">Мы в MAX</a>
         </div>
 
+        <!-- подвал -->
         <footer>
             Сайт создан <a href="https://gnusinrat.github.io" class="credit-link">ratbar1999</a> и командой Solar.
         </footer>
