@@ -200,7 +200,6 @@
 
         /* --- Стили для модального окна (поп-апа) --- */
         .modal-overlay {
-            display: none; /* Скрыто по умолчанию */
             position: fixed;
             top: 0;
             left: 0;
@@ -208,16 +207,22 @@
             height: 100%;
             background: rgba(0, 0, 0, 0.8);
             z-index: 1000;
+            display: flex;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(5px);
+            
+            /* Настройки для плавной анимации */
+            visibility: hidden;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            pointer-events: none;
+            transition: opacity 0.4s ease, visibility 0.4s ease;
         }
 
         .modal-overlay.active {
-            display: flex;
+            visibility: visible;
             opacity: 1;
+            pointer-events: auto;
         }
 
         .modal-content {
@@ -229,12 +234,16 @@
             width: 90%;
             text-align: center;
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
-            transform: translateY(-20px);
-            transition: transform 0.3s ease;
+            
+            /* Эффект выныривания снизу */
+            transform: translateY(40px) scale(0.9);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
         }
 
         .modal-overlay.active .modal-content {
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
+            opacity: 1;
         }
 
         .modal-title {
@@ -337,7 +346,7 @@
 </head>
 <body>
 
-    <!-- кнопка spotlight с новой иконкой радара/RSS -->
+    <!-- кнопка spotlight с иконкой радара -->
     <a href="https://gnusinrat.github.io/spotlight" class="spotlight-btn" title="Лента Spotlight (VSKY)">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M4 11a9 9 0 0 1 9 9"></path>
