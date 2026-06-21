@@ -393,11 +393,11 @@
 
             // при клике на кнопку билетов - показываем модалку
             ticketBtn.addEventListener('click', (e) => {
-                e.preventDefault(); // Останавливаем обычный переход по ссылке (теперь href="#")
+                e.preventDefault(); // останавливаем обычный переход по ссылке (теперь href="#")
                 modal.classList.add('active');
             });
 
-            // при клике на "Я понял" - убираем модалку и открываем ссылку
+            // при клике на перейти к покупке открываем ссылку
             confirmBtn.addEventListener('click', () => {
                 modal.classList.remove('active');
                 window.open(paymentUrl, '_blank');
