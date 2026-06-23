@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - VSKY_DEAD_END</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Press Start 2P', cursive;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .error-code {
+            font-size: 6rem;
+            margin-bottom: 40px;
+            text-shadow: 4px 4px 0px rgba(255, 255, 255, 0.15);
+            letter-spacing: 5px;
+        }
+
+        .cooler-link {
+            display: inline-block;
+            transition: transform 0.2s ease-in-out, filter 0.2s ease;
+            cursor: pointer;
+        }
+
+        .cooler-link:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+        }
+
+        .cooler-sprite {
+            width: 120px;
+            height: auto;
+            image-rendering: pixelated; 
+        }
+
+        .error-text {
+            font-size: 1.2rem;
+            margin-top: 40px;
+            line-height: 1.5;
+            color: #dddddd;
+        }
+
+        .dead-end {
+            position: absolute;
+            bottom: 20px;
+            font-size: 0.8rem;
+            color: #444444;
+            letter-spacing: 2px;
+        }
+        
+        @media (max-width: 600px) {
+            .error-code { font-size: 4rem; }
+            .error-text { font-size: 0.9rem; margin-top: 30px; }
+            .cooler-sprite { width: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="error-code">404</div>
+    
+    <a href="https://deltarune.com/rarecats" class="cooler-link" target="_blank" rel="noopener noreferrer">
+        <img class="cooler-sprite" src="https://deltarune.wiki/images/Watercooler_battle_idle.png?cb=9c6ywj&h=thumb.php&f=Watercooler_battle_idle.png" alt="Deltarune Watercooler">
+    </a>
+    
+    <div class="error-text">* Тут только кулер.</div>
+    
+    <div class="dead-end">VSKY_DEAD_END</div>
+
+</body>
+</html>
