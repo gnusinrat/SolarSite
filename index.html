@@ -166,12 +166,10 @@
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
         }
 
-        /* кнопка spotlight в углу */
-        .spotlight-btn {
+        /* кнопка spotlight в углу и кнопка ЧАВО */
+        .spotlight-btn, .faq-top-btn {
             position: absolute;
             top: 20px;
-            right: 20px;
-            width: 45px;
             height: 45px;
             background: rgba(20, 20, 20, 0.6);
             border: 1px solid var(--gold);
@@ -180,10 +178,25 @@
             align-items: center;
             justify-content: center;
             color: var(--gold);
+            text-decoration: none;
             backdrop-filter: blur(4px);
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
             transition: all 0.3s ease;
             z-index: 50;
+        }
+
+        .spotlight-btn {
+            right: 20px;
+            width: 45px;
+        }
+
+        .faq-top-btn {
+            left: 20px;
+            padding: 0 15px;
+            gap: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
         }
 
         .spotlight-btn svg {
@@ -191,8 +204,13 @@
             height: 22px;
         }
 
+        .faq-top-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
         /* ховер */
-        .spotlight-btn:hover {
+        .spotlight-btn:hover, .faq-top-btn:hover {
             background: var(--gold);
             color: var(--dark-bg);
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
@@ -332,20 +350,41 @@
             .solar-btn {
                 width: 90%;
             }
-            .spotlight-btn {
+            .spotlight-btn, .faq-top-btn {
                 top: 15px;
+                height: 40px;
+            }
+            .spotlight-btn {
                 right: 15px;
                 width: 40px;
-                height: 40px;
+            }
+            .faq-top-btn {
+                left: 15px;
+                padding: 0 10px;
+                font-size: 0.8rem;
             }
             .spotlight-btn svg {
                 width: 18px;
                 height: 18px;
             }
+            .faq-top-btn svg {
+                width: 16px;
+                height: 16px;
+            }
         }
     </style>
 </head>
 <body>
+
+    <!-- кнопка ЧАВО -->
+    <a href="https://gnusinrat.github.io/docs/solarfaq" class="faq-top-btn" title="Частые вопросы">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+        </svg>
+        <span>ЧАВО</span>
+    </a>
 
     <!-- кнопка spotlight с иконкой радара -->
     <a href="https://gnusinrat.github.io/spotlight" class="spotlight-btn" title="Лента Spotlight (VSKY)">
