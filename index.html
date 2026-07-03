@@ -166,8 +166,8 @@
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.7);
         }
 
-        /* кнопка spotlight в углу и кнопка ЧАВО */
-        .spotlight-btn, .faq-top-btn {
+        /* кнопка ЧАВО и кнопка НОВОСТИ */
+        .faq-top-btn, .news-top-btn {
             position: absolute;
             top: 20px;
             height: 45px;
@@ -183,15 +183,6 @@
             box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
             transition: all 0.3s ease;
             z-index: 50;
-        }
-
-        .spotlight-btn {
-            right: 20px;
-            width: 45px;
-        }
-
-        .faq-top-btn {
-            left: 20px;
             padding: 0 15px;
             gap: 8px;
             font-weight: bold;
@@ -199,18 +190,21 @@
             font-size: 0.9rem;
         }
 
-        .spotlight-btn svg {
-            width: 22px;
-            height: 22px;
+        .faq-top-btn {
+            left: 20px;
         }
 
-        .faq-top-btn svg {
+        .news-top-btn {
+            right: 20px;
+        }
+
+        .faq-top-btn svg, .news-top-btn svg {
             width: 20px;
             height: 20px;
         }
 
         /* ховер */
-        .spotlight-btn:hover, .faq-top-btn:hover {
+        .faq-top-btn:hover, .news-top-btn:hover {
             background: var(--gold);
             color: var(--dark-bg);
             box-shadow: 0 0 25px rgba(212, 175, 55, 0.5);
@@ -350,24 +344,19 @@
             .solar-btn {
                 width: 90%;
             }
-            .spotlight-btn, .faq-top-btn {
+            .faq-top-btn, .news-top-btn {
                 top: 15px;
                 height: 40px;
-            }
-            .spotlight-btn {
-                right: 15px;
-                width: 40px;
-            }
-            .faq-top-btn {
-                left: 15px;
                 padding: 0 10px;
                 font-size: 0.8rem;
             }
-            .spotlight-btn svg {
-                width: 18px;
-                height: 18px;
+            .faq-top-btn {
+                left: 15px;
             }
-            .faq-top-btn svg {
+            .news-top-btn {
+                right: 15px;
+            }
+            .faq-top-btn svg, .news-top-btn svg {
                 width: 16px;
                 height: 16px;
             }
@@ -384,6 +373,14 @@
             <line x1="12" y1="17" x2="12.01" y2="17"></line>
         </svg>
         <span>ЧАВО</span>
+    </a>
+
+    <!-- кнопка НОВОСТИ (Bluesky) -->
+    <a href="https://bsky.app/profile/xn--80avikb.art" class="news-top-btn" title="Новости">
+        <span>НОВОСТИ</span>
+        <svg viewBox="0 0 24 24" fill="currentColor" stroke="none">
+            <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565.139 1.908 0 3.08 0 3.768c0 .69.375 5.65.624 6.479.815 2.736 3.713 3.66 6.383 3.364.136-.02.275-.039.415-.056-.475 2.193-2.616 2.37-4.148 2.062-.48-.096-.948-.224-1.402-.381-.225-.078-.456-.16-.688-.246-.113-.042-.236-.088-.363-.134-.336-.123-.623-.132-.821-.027-.333.178-.344.62-.218.995.176.52 1.343 3.868 2.876 5.253 1.91 1.727 4.28 1.921 6.136.969 1.054-.54 1.983-1.63 2.658-2.698l.546-.867.546.867c.675 1.068 1.604 2.158 2.658 2.698 1.855.952 4.226.758 6.136-.969 1.533-1.385 2.7-4.733 2.876-5.253.126-.375.115-.817-.218-.995-.198-.105-.485-.096-.821.027-.127.046-.25.092-.363.134-.232.086-.463.168-.688.246-.454.157-.922.285-1.402.381-1.532.308-3.673.131-4.148-2.062.14.017.279.036.415.056 2.67.297 5.568-.628 6.383-3.364.249-.83.624-5.788.624-6.479 0-.688-.139-1.86-.902-2.203-.659-.299-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8z"/>
+        </svg>
     </a>
 
     <!-- Модальное окно (Поп-ап) -->
@@ -427,32 +424,39 @@
             const confirmBtn = document.getElementById('modalConfirmBtn');
             const cancelBtn = document.getElementById('modalCancelBtn');
             
-            // ссылка на оплату берется из дата-атрибута
-            const paymentUrl = ticketBtn.getAttribute('data-url');
+            // Если кнопка билета сейчас убрана с сайта, предотвращаем ошибку скрипта
+            if (ticketBtn) {
+                // ссылка на оплату берется из дата-атрибута
+                const paymentUrl = ticketBtn.getAttribute('data-url');
 
-            // при клике на кнопку билетов - показываем модалку
-            ticketBtn.addEventListener('click', (e) => {
-                e.preventDefault(); // останавливаем обычный переход по ссылке (теперь href="#")
-                modal.classList.add('active');
-            });
+                // при клике на кнопку билетов - показываем модалку
+                ticketBtn.addEventListener('click', (e) => {
+                    e.preventDefault(); // останавливаем обычный переход по ссылке
+                    modal.classList.add('active');
+                });
 
-            // при клике на перейти к покупке открываем ссылку
-            confirmBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-                window.open(paymentUrl, '_blank');
-            });
+                // при клике на перейти к покупке открываем ссылку
+                confirmBtn.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                    window.open(paymentUrl, '_blank');
+                });
+            }
 
             // при клике на "Отмена" - просто закрываем модалку
-            cancelBtn.addEventListener('click', () => {
-                modal.classList.remove('active');
-            });
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', () => {
+                    modal.classList.remove('active');
+                });
+            }
 
             // закрываем модалку, если кликнуть по темному фону вокруг неё
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                }
-            });
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        modal.classList.remove('active');
+                    }
+                });
+            }
         });
     </script>
 </body>
